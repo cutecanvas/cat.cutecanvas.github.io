@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         infoBubble.className = "card-info";
 
         const title = document.createElement("h3");
-        title.textContent = `Cat #${i}`;
+        title.textContent = ` #${i}`;
 
         imgWrap.appendChild(img);
         infoBubble.appendChild(title);
