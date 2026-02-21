@@ -1,0 +1,228 @@
+/* Reset and Base Styles */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Inter', 'Noto Sans TC', sans-serif;
+    background: #07090e url('../images/background.jpg') center center / cover no-repeat fixed;
+    /* Deep rich background */
+    overflow-x: hidden;
+    color: #e2e8f0;
+}
+
+/* Hidden container for inline SVG filters */
+.svg-defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+/* Premium Dynamic Background Orbs */
+.bg-orbs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: #02040a;
+}
+
+.bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(140px);
+    opacity: 0.8;
+    animation: flowLiquidColors 25s infinite alternate ease-in-out;
+}
+
+.orb-1 {
+    width: 60vw;
+    height: 60vw;
+    background: #3b82f6;
+    top: -10%;
+    left: -10%;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 50vw;
+    height: 50vw;
+    background: #8b5cf6;
+    top: 60%;
+    right: -10%;
+    animation-delay: -5s;
+}
+
+.orb-3 {
+    width: 55vw;
+    height: 55vw;
+    background: #10b981;
+    bottom: -20%;
+    left: 30%;
+    animation-delay: -10s;
+}
+
+@keyframes flowLiquidColors {
+    0% {
+        transform: translate(0, 0) scale(1.1);
+    }
+
+    100% {
+        transform: translate(15vw, -15vw) scale(1.3);
+    }
+}
+
+/* Page Header Structure Liquid Focus */
+.page-header {
+    text-align: center;
+    padding: 4rem 2rem 2rem;
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.page-header h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin: 0;
+    background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #9ca3af 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+}
+
+.page-header p {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    margin-top: 1rem;
+    line-height: 1.6;
+}
+
+.page-header .subtitle {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    margin-top: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 99px;
+    font-size: 0.95rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Layout for Gallery Grid Items */
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 3rem;
+    padding: 2rem 5vw 6rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* Liquid Glass Card Main Effect */
+.liquid-card {
+    position: relative;
+    border-radius: 24px;
+    padding: 1rem;
+    transform-style: preserve-3d;
+    cursor: default;
+    transition: transform 0.4s ease-out, border-color 0.4s, box-shadow 0.4s;
+
+    /* Moving borders and shadows here directly to avoid them becoming squiggly/wavy */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.liquid-card:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transform: translateY(-4px);
+}
+
+/* Glass element via ::before to keep image and text unaffected */
+.liquid-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgba(255, 255, 255, 0.04);
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    z-index: 0;
+
+    filter: url('#mild-liquid');
+    transition: background 0.4s ease-in-out;
+}
+
+.liquid-card:hover::before {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Inner Light Beam imitating Thick Wet Glass */
+.liquid-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0) 100%);
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.15);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.5;
+    transition: opacity 0.4s;
+}
+
+.liquid-card:hover::after {
+    opacity: 0.9;
+}
+
+/* Internal Image Wrapper to maintain size despite SVG warp */
+.img-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/5;
+    border-radius: 16px;
+    overflow: hidden;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.liquid-card:hover .img-wrapper img {
+    transform: scale(1.03);
+}
+
+/* Label styling under the image */
+.card-info {
+    margin-top: 1.25rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.card-info h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    color: #f1f5f9;
+}
